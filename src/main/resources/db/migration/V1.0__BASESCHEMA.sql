@@ -126,7 +126,7 @@ create table BOOKINGS (
     service_id binary(16) not null,
     vehicle_type_id binary(16) not null,
     vehicle_number varchar(20) not null,
-    foreign key (user_id) references USERS(id),
+    foreign key (user_id) references users(id),
     foreign key (workshop_id) references WORKSHOP(id),
     foreign key (service_id) references SERVICES(id),
     foreign key (vehicle_type_id) references VEHICLE_TYPES(id)
