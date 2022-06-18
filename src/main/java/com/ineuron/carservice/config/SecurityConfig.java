@@ -59,7 +59,7 @@ public class SecurityConfig {
                 .logoutSuccessHandler(getLogoutSuccessHandler())
                 .and()
                 .authorizeRequests()
-                .antMatchers(HttpMethod.POST, "/user").permitAll()
+                .antMatchers(HttpMethod.POST, "/user/save").permitAll()
                 .antMatchers(HttpMethod.PUT, "/user/forgot-password",
                         "/user/reset-password",
                         "/user/create-password").permitAll()
