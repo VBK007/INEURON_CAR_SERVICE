@@ -11,28 +11,28 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.UUID;
 
-@RestController("/vehicle")
+@RestController
 public class VehicleController {
     @Autowired
     private VehicleService vehicleService;
 
-    @GetMapping("/{id}")
+    @GetMapping("/vehicle/{id}")
     public SuccessResponse getVehicleById(@PathVariable("id") UUID id) {
         return new SuccessResponse(vehicleService.getVehicleById(id));
     }
 
-    @GetMapping
+    @GetMapping("/vehicle")
     public SuccessResponse getVehicles() {
         return new SuccessResponse(vehicleService.getVehicles());
     }
 
-    @PostMapping
+    @PostMapping("/vehicle")
     public SuccessResponse createVehicle(@RequestBody Vehicle vehicle) {
         vehicleService.saveOrUpdate(vehicle);
         return new SuccessResponse("Vehicle Created Successfully");
     }
 
-    @PutMapping
+    @PutMapping("/vehicle")
     public SuccessResponse updateVehicle(@RequestBody Vehicle vehicle) {
         vehicleService.saveOrUpdate(vehicle);
         return new SuccessResponse("Vehicle Updated Successfully");

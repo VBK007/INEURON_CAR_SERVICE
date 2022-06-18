@@ -10,28 +10,28 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.UUID;
 
-@RestController("/workshop")
-public class VehicleController {
+@RestController
+public class WorkshopController {
     @Autowired
     private WorkshopService workshopService;
 
-    @GetMapping("/{id}")
+    @GetMapping("/workshop/{id}")
     public SuccessResponse getWorkshopById(@PathVariable("id") UUID id) {
         return new SuccessResponse(workshopService.getWorkshopById(id));
     }
 
-    @GetMapping
+    @GetMapping("/workshop")
     public SuccessResponse getWorkshops() {
         return new SuccessResponse(workshopService.getWorkshops());
     }
 
-    @PostMapping
+    @PostMapping("/workshop")
     public SuccessResponse createWorkshop(@RequestBody Workshop workshop) {
         workshopService.saveOrUpdate(workshop);
         return new SuccessResponse("Workshop Created Successfully");
     }
 
-    @PutMapping
+    @PutMapping("/workshop")
     public SuccessResponse updateWorkshop(@RequestBody Workshop workshop) {
         workshopService.saveOrUpdate(workshop);
         return new SuccessResponse("Workshop Updated Successfully");
