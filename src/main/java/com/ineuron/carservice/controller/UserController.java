@@ -8,23 +8,23 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
-@RestController("/user")
+@RestController
 public class UserController {
 
     @Autowired
     private UserService userService;
 
-    @GetMapping("/getLoggedInUser/{username}")
+    @GetMapping("/user/getLoggedInUser/{username}")
     public User getLoggedInUser(@PathVariable("username") String username) {
         return userService.loadUserByUsername(username);
     }
 
-    @GetMapping("/getUser/{id}")
+    @GetMapping("/user/getUser/{id}")
     public User getUser(@PathVariable("id") UUID id) {
         return userService.loadUserById(id);
     }
 
-    @PostMapping("/save")
+    @PostMapping("/user/save")
     public SuccessResponse saveUser(@RequestBody User user) {
         return new SuccessResponse(userService.saveOrUpdate(user));
     }

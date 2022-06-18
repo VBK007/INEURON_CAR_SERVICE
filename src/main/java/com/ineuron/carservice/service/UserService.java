@@ -5,6 +5,7 @@ import com.ineuron.carservice.exception.InvalidDataException;
 import com.ineuron.carservice.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;
@@ -14,6 +15,9 @@ import java.util.Optional;
 public class UserService {
     @Autowired
     private UserDao userDao;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     public User loadUserByUsername(final String username) {
 
@@ -36,6 +40,11 @@ public class UserService {
     }
 
     public User saveOrUpdate(final User user) {
+        user.setFailedPasswordAttempts(0);
+        user.setIsAccountExpired(false);
+        user.setIsCredentialExpired(false);
+        user.setIsAccountLocked(false);
+        user.setPassword(passwordEncoder.encode(user.getUsername()));
         return userDao.save(user);
     }
 

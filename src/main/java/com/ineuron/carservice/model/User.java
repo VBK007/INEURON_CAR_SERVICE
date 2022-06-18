@@ -106,7 +106,7 @@ public class User implements UserDetails,Serializable  {
     @JsonIgnore
     private Integer failedPasswordAttempts;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name ="role_id")
     private Role role;
 
