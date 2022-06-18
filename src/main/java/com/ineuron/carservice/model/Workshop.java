@@ -22,10 +22,14 @@ public class Workshop {
     public UUID id;
     @Column(name = "workshop_name", nullable = false)
     private String workshop_name;
-    @Column(name = "owner_id", nullable = false)
-    private Integer owner_id;
-    @Column(name = "address_id", nullable = false)
-    private Integer address_id;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "owner_id", nullable = false)
+    private User user;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "address_id", nullable = false)
+    private Address address;
     @Column(name = "vehicles_service_ability", nullable = false)
     private Integer vehicles_service_ability;
 }
