@@ -16,14 +16,13 @@ public class VehicleController {
     @Autowired
     private VehicleService vehicleService;
 
-    @GetMapping("/vehicle/{id}")
-    public SuccessResponse getVehicleById(@PathVariable("id") UUID id) {
-        return new SuccessResponse(vehicleService.getVehicleById(id));
-    }
-
     @GetMapping("/vehicle")
     public SuccessResponse getVehicles() {
         return new SuccessResponse(vehicleService.getVehicles());
+    }
+    @GetMapping("/vehicle/{id}")
+    public SuccessResponse getVehicleById(@PathVariable("id") UUID id) {
+        return new SuccessResponse(vehicleService.getVehicleById(id));
     }
 
     @PostMapping("/vehicle")
