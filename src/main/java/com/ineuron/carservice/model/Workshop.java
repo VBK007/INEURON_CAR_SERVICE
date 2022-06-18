@@ -10,23 +10,21 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name= "VEHICLE_TYPES")
+@Table(name= "WORKSHOP")
 @Getter
 @Setter
 @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
-public class Vehicle {
+public class Workshop {
 
     @Id
     @Column(name = "id")
     private int id;
-
-    @Column(name = "brand", nullable = false)
-    private String brand;
-
-    @Column(name = "model", nullable = false)
-    private String model;
-
-    @Column(name = "vehicle_type", nullable = false)
-    private String vehicleType;
-
+    @Column(name = "workshop_name", nullable = false)
+    private String workshop_name;
+    @Column(name = "owner_id", nullable = false)
+    private Integer owner_id;
+    @Column(name = "address_id", nullable = false)
+    private Integer address_id;
+    @Column(name = "vehicles_service_ability", nullable = false)
+    private Integer vehicles_service_ability;
 }
