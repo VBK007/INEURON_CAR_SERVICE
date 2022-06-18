@@ -30,7 +30,7 @@ CREATE TABLE users (
     first_name varchar(255) NOT NULL,
     last_name varchar(255),
     mobile_number varchar(15),
-    username varchar(50) NOT NULL,
+    username varchar(50) NOT NULL UNIQUE,
     password char(60),
     failed_password_attempts int NOT NULL,
     is_account_expired boolean NOT NULL,
@@ -121,6 +121,7 @@ create table SERVICES (
 
 create table BOOKINGS (
     id binary(16) PRIMARY KEY,
+    ref_no int NOT NULL,
     user_id binary(16) not null,
     workshop_id binary(16) not null,
     service_id binary(16) not null,
