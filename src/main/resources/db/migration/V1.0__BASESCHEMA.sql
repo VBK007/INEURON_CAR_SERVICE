@@ -2,6 +2,19 @@ DROP TABLE IF EXISTS `users`;
 
 DROP TABLE IF EXISTS `role`;
 
+DROP TABLE IF EXISTS WORKSHOP;
+
+DROP TABLE IF EXISTS SERVICES;
+
+DROP TABLE IF EXISTS BOOKINGS;
+
+DROP TABLE IF EXISTS BOOKING_DETAILS;
+
+DROP TABLE IF EXISTS ADDRESS;
+
+DROP TABLE IF EXISTS VEHICLES;
+
+
 CREATE TABLE role (
     id int PRIMARY KEY,
     name varchar(255) NOT NULL,
@@ -67,3 +80,71 @@ CREATE TABLE SPRING_SESSION_ATTRIBUTES (
 );
 
 CREATE INDEX SPRING_SESSION_ATTRIBUTES_IX1 ON SPRING_SESSION_ATTRIBUTES (SESSION_PRIMARY_ID);
+
+CREATE TABLE VEHICLE_TYPES (
+        id BINARY(16) PRIMARY KEY,
+        brand varchar(100) not null,
+        model varchar(50) not null,
+        vehicle_type varchar(50) not null
+
+)
+
+CREATE TABLE ADDRESS(
+    id binary(16) PRIMARY KEY,
+    pin_code varchar(12) not null ,
+    city varchar(50) not null ,
+    state varchar(50) not null ,
+    country varchar(50) not null ,
+    latitude double not null,
+    longitude double not null,
+    address1 varchar(50) not null,
+    address2 varchar(50)
+)
+
+CREATE TABLE WORKSHOP (
+    id BINARY(16) PRIMARY KEY,
+    workshop_name varchar(100) not null,
+    owner_id INT not null,
+    address_id int not null,
+    foreign key (owner_id) references USERS(id),
+    foreign key (address_id) references ADDRESS(id),
+    vehicles_service_ability int not null
+)
+create table SERVICES (
+    id binary(16) primary key,
+    service_name varchar(50) not null,
+    slots_needed int not null,
+    service_price decimal not null,
+    description varchar(500)
+)
+create table BOOKINGS (
+    id binary(16) PRIMARY KEY,
+    user_id int not null,
+    workshop_id int not null,
+    service_id int not null,
+    vehicle_type_id int not null,
+    vehicle_number varchar(20) not null,
+    foreign key (user_id) references USERS(id),
+    foreign key (workshop_id) references WORKSHOP(id),
+    foreign key (service_id) references SERVICES(id),
+    foreign key (vehicle_type_id) references VEHICLE_TYPES(id)
+)
+
+create table BOOKING_DETAILS(
+    id binary(16) primary key,
+    booking_id int not null,
+    is_custom_service BOOLEAN not null,
+    pickup_at_door_step BOOLEAN not null,
+    pickup_date_time DATETIME,
+    WALKIN_DATE_TIME DATETIME,
+    foreign key (booking_id) references BOOKINGS(id)
+)
+
+CREATE TABLE SLOTS_BOOKED (
+    id binary(key) primary key,
+    slot_date DATE not null,
+    slot1_booked_count int not null,
+    slot2_booked_count int not null,
+    workshop int not null,
+    foreign key (workshop) references WORKSHOP(id)
+)
