@@ -110,6 +110,9 @@ public class User implements UserDetails,Serializable  {
     @JoinColumn(name ="role_id")
     private Role role;
 
+    @Column(name = "fcm_key")
+    private String fcmKey;
+
     @Override
     @JsonIgnore
     public Collection<? extends GrantedAuthority> getAuthorities() {

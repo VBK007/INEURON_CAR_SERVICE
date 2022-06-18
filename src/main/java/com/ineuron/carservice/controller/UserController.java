@@ -1,15 +1,14 @@
 package com.ineuron.carservice.controller;
 
 import com.ineuron.carservice.model.User;
+import com.ineuron.carservice.response.SuccessResponse;
 import com.ineuron.carservice.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
-@RestController
+@RestController("/user")
 public class UserController {
 
     @Autowired
@@ -23,5 +22,10 @@ public class UserController {
     @GetMapping("/getUser/{id}")
     public User getUser(@PathVariable("id") UUID id) {
         return userService.loadUserById(id);
+    }
+
+    @PostMapping("/save")
+    public SuccessResponse saveUser(@RequestBody User user) {
+        return new SuccessResponse(userService.saveOrUpdate(user));
     }
 }

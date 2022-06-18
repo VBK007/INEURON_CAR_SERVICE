@@ -32,7 +32,8 @@ CREATE TABLE users (
     created_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
     created_by binary(16),
     updated_by binary(16),
-    updated_at timestamp NULL
+    updated_at timestamp NULL,
+    fcm_key varchar(255)
 );
 
 INSERT INTO users (id, first_name, last_name, mobile_number, username, password, failed_password_attempts, is_account_expired, is_account_locked, is_credential_expired, is_enabled, role_id, created_at) VALUES
