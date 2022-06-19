@@ -7,6 +7,8 @@ import org.hibernate.annotations.GenericGenerator;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.*;
+import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 
@@ -40,5 +42,7 @@ public class Booking {
     @Column(name = "vehicle_number", nullable = false)
     private String vehicleNumber;
 
+    @OneToMany(mappedBy = "booking", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Set<BookingDetail> bookingDetails;
 
 }

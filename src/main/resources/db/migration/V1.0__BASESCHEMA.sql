@@ -124,12 +124,11 @@ create table BOOKINGS (
     ref_no int NOT NULL,
     user_id binary(16) not null,
     workshop_id binary(16) not null,
-    service_id binary(16) not null,
     vehicle_type_id binary(16) not null,
     vehicle_number varchar(20) not null,
+    status ENUM ('PENDING','INPROGRESS','REJECTED','COMPLETED'),
     foreign key (user_id) references users(id),
     foreign key (workshop_id) references WORKSHOP(id),
-    foreign key (service_id) references SERVICES(id),
     foreign key (vehicle_type_id) references VEHICLE_TYPES(id)
 );
 
@@ -140,7 +139,9 @@ create table BOOKING_DETAILS(
     pickup_at_door_step BOOLEAN not null,
     pickup_date_time DATETIME,
     WALKIN_DATE_TIME DATETIME,
-    foreign key (booking_id) references BOOKINGS(id)
+    service_id binary(16) not null,
+    foreign key (booking_id) references BOOKINGS(id),
+    foreign key (service_id) references SERVICES(id)
 );
 
 CREATE TABLE SLOTS_BOOKED (
