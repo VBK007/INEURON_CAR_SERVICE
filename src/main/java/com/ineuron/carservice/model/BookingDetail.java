@@ -2,6 +2,7 @@ package com.ineuron.carservice.model;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.ineuron.carservice.service.VehicleService;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
@@ -31,7 +32,7 @@ public class BookingDetail {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "service_id", nullable = false)
-    private VehicleService vehicleService;
+    private VService vehicleService;
 
     @Column(name = "pickup_date_time", nullable = false)
     private LocalDateTime pickup_date_time;

@@ -34,6 +34,7 @@ public class Booking {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "workshop_id", nullable = false)
     private Workshop workshop;
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "service_id", nullable = false)
     private VService vService;

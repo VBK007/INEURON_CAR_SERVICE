@@ -19,6 +19,12 @@ public class BookingController {
     public SuccessResponse getBookings() {
         return new SuccessResponse(bookingService.getBookings());
     }
+
+    @GetMapping("/booking/shop/{id}")
+    public SuccessResponse getBookingsByShop(@PathVariable("id") UUID id) {
+        return new SuccessResponse(bookingService.getBookingsByShop(id));
+    }
+
     @GetMapping("/booking/{id}")
     public SuccessResponse getBookingById(@PathVariable("id") UUID id) {
         return new SuccessResponse(bookingService.getBookingById(id));

@@ -28,5 +28,9 @@ public class BookingService {
         return bookingDao.findAll();
     }
 
+    public List<Booking> getBookingsByShop(UUID id) {
+        return bookingDao.findByWorkshop_id(id);
+    }
+
 
 }
