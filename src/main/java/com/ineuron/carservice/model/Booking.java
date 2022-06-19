@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
-import org.springframework.stereotype.Service;
+import org.hibernate.jdbc.Work;
 
 import javax.persistence.*;
 import java.util.List;
@@ -32,8 +32,11 @@ public class Booking {
     private User user;
 
     @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "workshop_id", nullable = false)
+    private Workshop workshop;
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "service_id", nullable = false)
-    private VehicleService vehicleService;
+    private VService vService;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "vehicle_type_id", nullable = false)

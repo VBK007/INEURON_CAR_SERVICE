@@ -12,8 +12,9 @@ DROP TABLE IF EXISTS BOOKING_DETAILS;
 
 DROP TABLE IF EXISTS ADDRESS;
 
-DROP TABLE IF EXISTS VEHICLES;
+DROP TABLE IF EXISTS VEHICLE_TYPES;
 
+DROP TABLE IF EXISTS SLOTS_BOOKED;
 
 CREATE TABLE role (
     id int PRIMARY KEY,
@@ -88,6 +89,8 @@ CREATE TABLE VEHICLE_TYPES (
         vehicle_type varchar(50) not null
 
 );
+insert into VEHICLE_TYPES (id,brand, model, vehicle_type) values (unhex('36eb354cef5111ec8ea00242ac120002'),'MARUTI','SWIFT DZIRE','PETROL ENGINE'),
+(unhex('36eb39acef5111ec8ea00242ac120002'),'TATA','NISSAN','PETROL ENGINE'), (unhex('36eb3880ef5111ec8ea00242ac120002'),'MAHINDRA','SCORPIO','DIESEL ENGINE');
 
 CREATE TABLE ADDRESS(
     id binary(16) PRIMARY KEY,
@@ -116,7 +119,9 @@ create table SERVICES (
     service_name varchar(50) not null,
     slots_needed int not null,
     service_price decimal not null,
-    description varchar(500)
+    description varchar(500),
+    workshop_id binary(16) not null,
+    foreign key (workshop_id) references WORKSHOP(id)
 );
 
 create table BOOKINGS (

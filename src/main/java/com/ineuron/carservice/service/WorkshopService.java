@@ -15,8 +15,8 @@ public class WorkshopService {
     @Autowired
     private WorkshopDao workshopDao;
 
-    public Workshop saveOrUpdate(final Workshop vehicle) {
-        return workshopDao.save(vehicle);
+    public Workshop saveOrUpdate(final Workshop workshop) {
+        return workshopDao.save(workshop);
     }
 
     public Workshop getWorkshopById(UUID id) {

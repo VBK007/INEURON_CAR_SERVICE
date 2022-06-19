@@ -1,6 +1,7 @@
 package com.ineuron.carservice.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.ineuron.carservice.service.WorkshopService;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
@@ -13,7 +14,7 @@ import java.util.UUID;
 @Getter
 @Setter
 @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
-public class VehicleService {
+public class VService {
     @Id
     @Column(name = "id")
     @GeneratedValue(generator = "uuid")
@@ -31,5 +32,9 @@ public class VehicleService {
 
     @Column(name = "description")
     private String description;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "workshop_id", nullable = false)
+    private Workshop workshop;
 
 }
