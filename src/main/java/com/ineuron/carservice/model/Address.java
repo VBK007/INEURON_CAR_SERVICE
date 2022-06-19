@@ -41,4 +41,7 @@ public class Address {
 
     @Column(name = "address2")
     private Double address2;
+
+    @Transient
+    private Double distance;
 }
